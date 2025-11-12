@@ -15,7 +15,7 @@ Flo Blur MVP is a lightweight simulator I put together to demo how we could watc
    git clone https://github.com/<your-user>/flo_blur_mvp.git
    cd flo_blur_mvp
    ```
-2. Spin up a virtual environment (totally optional, but keeps things tidy):
+2. Spin up a virtual environment (optional):
    ```powershell
    python -m venv .venv
    .venv\Scripts\Activate.ps1
@@ -26,28 +26,13 @@ Flo Blur MVP is a lightweight simulator I put together to demo how we could watc
    python -m pip install .
    ```
 
-Once that’s done, check out the CLI options with:
-```powershell
-flo-blur-mvp --help
-```
+
 
 ## Using the Simulator
 
-All of the knobs have sensible defaults, but here are the ones you’ll probably reach for:
-
-- `--cameras`: how many virtual cameras to simulate (default 3)
-- `--interval`: seconds between simulator ticks (default 5)
-- `--alert-threshold`: how long a camera must stay blurry before we bug someone (default 60)
-- `--suppress`: per-camera cooldown after showing an alert (default 300)
-- `--aggregate-window` and `--aggregate-min`: control when we group multiple cameras into one site-level alert
-- `--aggregate-suppress`: cooldown for site-wide alerts
-- `--csv`: where to write every tick (`events.csv` by default)
-- `--episodes-csv`: where to log resolved blur episodes (`blur_episodes.csv` by default)
-- `--washdown`: comma-separated windows like `06:00-06:30` that hint a scheduled washdown might be happening
-
-For example:
+Command:
 ```powershell
-flo-blur-mvp --cameras 4 --interval 3 --alert-threshold 30 --episodes-csv out/blur_episodes.csv
+python blurry_mvp.py --cameras 3 --interval 5   
 ```
 
 While it’s running you’ll see pop-up windows. Hit **Clean Lens** when you want to resolve an alert — the simulator clears the blur, records the episode, and goes back to watching.
@@ -81,4 +66,4 @@ The project uses a `pyproject.toml` with setuptools and exposes the `flo-blur-mv
 python -m pip install build
 python -m build
 ```
-You’ll find the results in `dist/`, ready to drop into a release.
+
